@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block BodyContent %}
+    {% load static %}
+    {% static "media/" as imagePath %}
+
+    <div class="container">
+        <h3 class="text-center">{{ course.title }}</h3>
+        <hr>
+        <div class="row">
+            <div class="col-12 col-sm-8">
+                <div>
+                    <h5>Details:</h5>
+                    {{ course.description }}
+                </div>
+                <br>
+                <div>
+                    <h5>Content:</h5>
+                    {% if  course.section_set|length > 0 %}
+                        <div>
+                            {{ course.section_set }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <img src="{{ imagePath }}{{ course.image }}" class="card-img-top"
+                     alt="..." style="width: 100%"
+                >
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        {% if course.price != 0.00 %}
+                            <strong>${{ course.price }}</strong>
+                            <strong>${{ course.discounted_price }}</strong>
+                        {% else %}
+                            <strong class="success-text">Free</strong>
+                        {% endif %}
+                    </div>
+                    <a href="#" class="btn btn-primary">Enroll</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+<!-- Page level scrypt -->
+{% block Script %}
+
+{% endblock %}
